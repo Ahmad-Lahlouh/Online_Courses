@@ -1,4 +1,3 @@
-// import brandModel from "../../../../DB/model/globalErrorHandler.model.js"
 import cloudinary from "../../../Services/cloudinary.js"
 import slugify from "slugify"
 import { asyncHandler } from "../../../Services/errorHandling.js"
