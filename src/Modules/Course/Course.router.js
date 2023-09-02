@@ -1,9 +1,6 @@
 import {Router} from "express"; 
 import fileUpload, { fileValidation } from "../../Services/multerCloudinary.js";
-// import reviewRouter from '../Review/Review.router.js'
 import * as courseController from './controller/Course.controller.js'
-import * as validators from './course.validation.js'
-import validation from "../../Middleware/validation.js";
 import { auth, roles } from "../../Middleware/auth.middleware.js";
 import { endPoint } from "./course.endpoint.js";
 const router = Router({mergeParams:true});
