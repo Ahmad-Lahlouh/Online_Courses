@@ -39,22 +39,22 @@ await cart.save()
     return res.status(200).json({message:'success',cart})
 })
 
-// export const deleteItem = asyncHandler(async(req,res,next)=>{
+export const deleteItem = asyncHandler(async(req,res,next)=>{
 
-//     const{courseIds}=req.body
+    const{courseIds}=req.body
 
-//     const deleteItem = await cartModel.updateOne({userId:req.user._id},{
+    const deleteItem = await cartModel.updateOne({userId:req.user._id},{
 
-//         $pull:{
-//             courses:{
-//                 courseId:{$in:courseIds}
+        $pull:{
+            courses:{
+                courseId:{$in:courseIds}
     
-//             }
-//         }
-//     })
+            }
+        }
+    })
 
-//     return res.json({message:'success',deleteItem})
-// })
+    return res.json({message:'success',deleteItem})
+})
 
 // export const clearCart = asyncHandler(async(req,res,next)=>{
 //     const clearCart = await cartModel.updateOne({userId:req.user._id},{
