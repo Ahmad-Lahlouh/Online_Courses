@@ -64,11 +64,11 @@ export const clearCart = asyncHandler(async(req,res,next)=>{
 
 })
 
-// export const getCart = asyncHandler(async(req,res,next)=>{
-//     const cart= await cartModel.findOne({userId:req.user._id})
-//     return res.status(200).json({message:'success',cart})
+export const getCart = asyncHandler(async(req,res,next)=>{
+    const cart= await cartModel.findOne({userId:req.user._id})
+    return res.status(200).json({message:'success',cart})
 
-// })
+})
 
 
 
