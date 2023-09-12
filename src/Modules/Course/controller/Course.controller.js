@@ -32,10 +32,10 @@ return res.json({message:'sucess',Course})
 export const updateCourse = asyncHandler(async (req,res,next)=>{
     const{CourseId}=req.params
 
-    const newCourse = await courseModel.findById(CourseId)
-    if(!newCourse){
-        return next(new Error('Course not found',{cause:400}))
-    }
+    const newCourse = await courseModel.findById(_id)
+    // if(!newCourse){
+    //     return next(new Error('Course not found',{cause:400}))
+    // }
     const {name,price,discount,categoryId,} = req.body
     if(categoryId){
         const checkCategory = await categoryModel.findOne({_id:categoryId})
