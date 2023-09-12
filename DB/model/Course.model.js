@@ -41,15 +41,15 @@ const courseSchema = new Schema({
 },
 {  
     timestamps:true,
-    // toJSON:{virtuals:true},
-    // toObject:{virtuals:true},
+    toJSON:{virtuals:true},
+    toObject:{virtuals:true},
 })
 
 
-// courseSchema.virtual('reviews',{
-// localField:'_id',
-// foreignField:'courseId',
-// ref:'Review',
-// })
+courseSchema.virtual('reviews',{
+localField:'_id',
+foreignField:'courseId',
+ref:'Review',
+})
 const courseModel = mongoose.models.course || model("course",courseSchema)
 export default courseModel
