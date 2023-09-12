@@ -32,7 +32,7 @@ return res.json({message:'sucess',Course})
 export const updateCourse = asyncHandler(async (req,res,next)=>{
     const{CourseId}=req.params
 
-    const newCourse = await courseModel.findById(_id)
+    const newCourse = await courseModel.findById()
     // if(!newCourse){
     //     return next(new Error('Course not found',{cause:400}))
     // }
