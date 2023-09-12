@@ -12,10 +12,9 @@ router.post('/',auth(endPoint.create),fileUpload(fileValidation.image).fields([
     {name:'mainImage',maxCount:1},
 ]),courseController.createCourse)
 
-// router.put('/update/:courseId',auth(endPoint.update),fileUpload(fileValidation.image).fields([
-//     {name:'mainImage',maxCount:1},
-//     {name:'subImages',maxCount:5}
-// ]),courseController.updateCourse)
+router.put('/update/:courseId',auth(endPoint.update),fileUpload(fileValidation.image).fields([
+    {name:'mainImage',maxCount:1}
+]),courseController.updateCourse)
 
 // router.patch('/softDelete/:courseId',auth(endPoint.softDelete),courseController.softDelete)
 // router.delete('/forceDelete/:courseId',auth(endPoint.forceDelete),courseController.forceDelete)
