@@ -1,8 +1,8 @@
 import cloudinary from "../../../Services/cloudinary.js"
 import slugify from "slugify"
 import { asyncHandler } from "../../../Services/errorHandling.js"
-import CourseModel from "../../../../DB/model/Course.model.js"
 import categoryModel from "../../../../DB/model/Category.model.js"
+import courseModel from "../../../../DB/model/Course.model.js"
 
 export const createCourse =asyncHandler( async (req,res,next)=>{
 const {name,price,discount,categoryId,} = req.body
@@ -32,7 +32,7 @@ return res.json({message:'sucess',Course})
 export const updateCourse = asyncHandler(async (req,res,next)=>{
     const{CourseId}=req.params
 
-    const newCourse = await CourseModel.findById(CourseId)
+    const newCourse = await courseModel.findById(CourseId)
     if(!newCourse){
         return next(new Error('Course not found',{cause:400}))
     }
@@ -107,7 +107,7 @@ export const updateCourse = asyncHandler(async (req,res,next)=>{
             
     //     }
     // }
-    
+
     newCourse.updatedBy=req.user._id
     const Course = await newCourse.save()
     if(!Course){
