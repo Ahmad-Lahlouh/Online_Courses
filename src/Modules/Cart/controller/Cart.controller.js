@@ -56,13 +56,13 @@ export const deleteItem = asyncHandler(async(req,res,next)=>{
     return res.json({message:'success',deleteItem})
 })
 
-// export const clearCart = asyncHandler(async(req,res,next)=>{
-//     const clearCart = await cartModel.updateOne({userId:req.user._id},{
-//         courses:[]
-//     })
-//         return res.status(200).json({message:'success'})
+export const clearCart = asyncHandler(async(req,res,next)=>{
+    const clearCart = await cartModel.updateOne({userId:req.user._id},{
+        courses:[]
+    })
+        return res.status(200).json({message:'success'})
 
-// })
+})
 
 // export const getCart = asyncHandler(async(req,res,next)=>{
 //     const cart= await cartModel.findOne({userId:req.user._id})
