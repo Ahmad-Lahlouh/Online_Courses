@@ -22,7 +22,7 @@ req.body.mainImage={public_id,secure_url}
 req.body.createdBy=req.user._id
 req.body.updatedBy=req.user._id
 
-const Course = await CourseModel.create(req.body)
+const Course = await courseModel.create(req.body)
 if(!Course){
     return next(new Error('faild to create Course',{cause:400}))
 }
