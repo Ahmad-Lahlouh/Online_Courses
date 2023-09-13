@@ -46,10 +46,10 @@ const courseSchema = new Schema({
 })
 
 
-courseSchema.virtual('reviews',{
-localField:'_id',
-foreignField:'courseId',
-ref:'Review',
-})
+// courseSchema.virtual('reviews',{
+// localField:'_id',
+// foreignField:'courseId',
+// ref:'Review',
+// })
 const courseModel = mongoose.models.course || model("course",courseSchema)
 export default courseModel

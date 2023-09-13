@@ -30,10 +30,9 @@ return res.json({message:'sucess',Course})
 })
 
 export const updateCourse = asyncHandler(async (req,res,next)=>{
-    const{CourseId}=req.params
+    const{courseId}=req.params
 
-    const newCourse = await courseModel.findById(CourseId)
-    return res.json(newCourse)
+    const newCourse = await courseModel.findById(courseId)
     if(!newCourse){
         return next(new Error('Course not found',{cause:400}))
     }
@@ -120,91 +119,95 @@ export const updateCourse = asyncHandler(async (req,res,next)=>{
 
 
 
-// export const getCourse = asyncHandler(async(req,res,next)=>{
-//     let{CourseId} = req.params
-//     const Course = await CourseModel.findById(CourseId)
-//     if(!Course){
-//         return next(new Error('Course is not found',{cause:400}))
-//     }
-//     return res.json({message:'success',Course})
-// })
-// export const getCourses = asyncHandler(async(req,res,next)=>{
-//     let {page,size} = req.query
+export const getCourse = asyncHandler(async(req,res,next)=>{
+    let{courseId} = req.params
+    const Course = await courseModel.findById(courseId)
+    if(!Course){
+        return next(new Error('Course is not found',{cause:400}))
+    }
+    return res.json({message:'success',Course})
+})
 
-//     if(!page || page<=0){
-//         page= 1
-//     }
-//     if(!size || size<=0){
-//         size= 3 
-//     }
-//     const skip = (page-1)*size
+export const getCourses = asyncHandler(async(req,res,next)=>{
+    let {page,size} = req.query
 
-//     const excQuryParams = ['page','size','sort','search']
+    if(!page || page<=0){
+        page= 1
+    }
+    if(!size || size<=0){
+        size= 3 
+    }
+    const skip = (page-1)*size
 
-//     const filterQuery = {...req.query}
-//     excQuryParams.map(params =>{
-//         delete filterQuery[params]
-//     })
+    const excQuryParams = ['page','size','sort','search']
 
-//     const query = JSON.parse(JSON.stringify(filterQuery).replace(/(gt|gte|lt|lte|in|nin|eq|nqe)/g,match=>`$${match}`))
-//     const mongoQuary=CourseModel.find(query).limit(size).skip(skip).sort(req.query.sort?.replaceAll(',',''))
+    const filterQuery = {...req.query}
+    excQuryParams.map(params =>{
+        delete filterQuery[params]
+    })
 
-//     if(req.query.find){
+    const query = JSON.parse(JSON.stringify(filterQuery).replace(/(gt|gte|lt|lte|in|nin|eq|nqe)/g,match=>`$${match}`))
+    const mongoQuary=courseModel.find(query).limit(size).skip(skip).sort(req.query.sort?.replaceAll(',',''))
 
-//         const Courses = await mongoQuary.find({
-//             $or:[
+    if(req.query.find){
+
+        const Courses = await mongoQuary.find({
+            $or:[
     
-//                 {name:{$regex:req.query.search,$options:'i'}},
-//                 {description:{$regex:req.query.search,$options:'i'}},
+                {name:{$regex:req.query.search,$options:'i'}},
+                {description:{$regex:req.query.search,$options:'i'}},
     
-//             ]
+            ]
     
-//         })
-//         req.body.Courses = Courses
+        })
+        req.body.Courses = Courses
 
-//     }else{
-//         const Courses = await mongoQuary
-//         req.body.Courses = Courses
+    }else{
+        const Courses = await mongoQuary
+        req.body.Courses = Courses
 
 
-//     }
-//     const Courses = req.body.Courses
-//     if(!Courses){
-//         return next(new Error('Courses is not found',{cause:400}))
-//     }
-//     return res.json({message:'success',Courses})
-// })
-// export const softDelete = asyncHandler(async(req,res,next)=>{
-//     let {CourseId}=req.params
-//     const Course = await CourseModel.findOneAndUpdate({_id:CourseId,isDeleted:false},{isDeleted:true},{new:true})
-//     if(!Course){
-//         return next(new Error('Course not found',{cause:400}))
-//     }
-//     return res.json({message:'success',Course})
-// })
-// export const restore = asyncHandler(async(req,res,next)=>{
-//     let {CourseId}=req.params
-//     const Course = await CourseModel.findOneAndUpdate({_id:CourseId,isDeleted:true},{isDeleted:false},{new:true})
-//     if(!Course){
-//         return next(new Error('Course not found',{cause:400}))
-//     }
-//     return res.json({message:'success',Course})
-// })
-// export const getSoftDeleteCourses = asyncHandler(async(req,res,next)=>{
-//     const Course = await CourseModel.find({isDeleted:true})
-//     if(!Course){
-//         return next(new Error('Course not found',{cause:400}))
-//     }
-//     return res.json({message:'success',Course})
-// })
-// export const forceDelete = asyncHandler(async(req,res,next)=>{
-//     let {CourseId}=req.params
-//     const Course = await CourseModel.findOneAndDelete({_id:CourseId,isDeleted:true})
-//     if(!Course){
-//         return next(new Error('Course not found',{cause:400}))
-//     }
-//     return res.json({message:'success',Course})
-// })
+    }
+    const Courses = req.body.Courses
+    if(!Courses){
+        return next(new Error('Courses is not found',{cause:400}))
+    }
+    return res.json({message:'success',Courses})
+})
+
+export const softDelete = asyncHandler(async(req,res,next)=>{
+    let {courseId}=req.params
+    const Course = await courseModel.findOneAndUpdate({_id:courseId,isDeleted:false},{isDeleted:true},{new:true})
+    if(!Course){
+        return next(new Error('Course not found',{cause:400}))
+    }
+    return res.json({message:'success',Course})
+})
+export const restore = asyncHandler(async(req,res,next)=>{
+    let {courseId}=req.params
+    const Course = await courseModel.findOneAndUpdate({_id:courseId,isDeleted:true},{isDeleted:false},{new:true})
+    if(!Course){
+        return next(new Error('Course not found',{cause:400}))
+    }
+    return res.json({message:'success',Course})
+})
+
+export const getSoftDeleteCourses = asyncHandler(async(req,res,next)=>{
+    const Course = await courseModel.find({isDeleted:true})
+    if(!Course){
+        return next(new Error('Course not found',{cause:400}))
+    }
+    return res.json({message:'success',Course})
+})
+
+export const forceDelete = asyncHandler(async(req,res,next)=>{
+    let {courseId}=req.params
+    const Course = await courseModel.findOneAndDelete({_id:courseId,isDeleted:true})
+    if(!Course){
+        return next(new Error('Course not found',{cause:400}))
+    }
+    return res.json({message:'success',Course})
+})
 
 
 

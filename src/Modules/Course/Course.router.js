@@ -16,11 +16,11 @@ router.put('/update/:courseId',auth(endPoint.update),fileUpload(fileValidation.i
     {name:'mainImage',maxCount:1}
 ]),courseController.updateCourse)
 
-// router.patch('/softDelete/:courseId',auth(endPoint.softDelete),courseController.softDelete)
-// router.delete('/forceDelete/:courseId',auth(endPoint.forceDelete),courseController.forceDelete)
-// router.patch('/restore/:courseId',auth(endPoint.restore),courseController.restore)
-// router.get('/softDelete',auth(endPoint.get),courseController.getSoftDeleteCourses)
-// router.get('/:courseId',courseController.getCourse)
-// router.get('/',courseController.getCourses)
+router.patch('/softDelete/:courseId',auth(endPoint.softDelete),courseController.softDelete)
+router.delete('/forceDelete/:courseId',auth(endPoint.forceDelete),courseController.forceDelete)
+router.patch('/restore/:courseId',auth(endPoint.restore),courseController.restore)
+router.get('/softDelete',auth(endPoint.get),courseController.getSoftDeleteCourses)
+router.get('/:courseId',courseController.getCourse)
+router.get('/',courseController.getCourses)
 
 export default router
