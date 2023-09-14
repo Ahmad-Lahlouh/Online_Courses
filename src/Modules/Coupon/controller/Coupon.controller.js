@@ -57,7 +57,7 @@ export const updateCoupon = asyncHandler(async (req,res,next)=>{
         coupon.amount = req.body.amount
     }
     
-    // req.body.updatedBy=req.user._id
+    req.body.updatedBy=req.user._id
     // return res.json("ok")
     
     await coupon.save()

@@ -10,7 +10,7 @@ router.post('/',auth(endPoint.create),validation(validators.createCoupon),Coupon
 router.get('/',CouponController.getCoupons)
 router.get('/:couponId',validation(validators.getSpecificCoupon),CouponController.getSpecificCoupon)
 
-router.put('/update/:couponId',validation(validators.updateCoupon),CouponController.updateCoupon)
+router.put('/update/:couponId',auth(endPoint.update),validation(validators.updateCoupon),CouponController.updateCoupon)
 
 
 
