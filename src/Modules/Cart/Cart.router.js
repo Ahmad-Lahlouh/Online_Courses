@@ -1,8 +1,5 @@
 import {Router} from "express"; 
-import fileUpload, { fileValidation } from "../../Services/multerCloudinary.js";
 import * as CartController from './controller/Cart.controller.js'
-import * as validators from './Cart.validation.js'
-import validation from "../../Middleware/validation.js";
 import { auth } from "../../Middleware/auth.middleware.js";
 import { endPoint } from "./Cart.endpoint.js";
 const router = Router();

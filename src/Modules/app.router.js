@@ -6,6 +6,8 @@ import UserRouter from './User/User.router.js';
 import categoryRouter from './Category/Category.router.js'
 import courseRouter from './Course/Course.router.js'
 import cartRouter from './Cart/Cart.router.js'
+import couponRouter from './Coupon/Coupon.router.js'
+
 
 
 import path from 'path'; 
@@ -22,6 +24,8 @@ const initApp=(app,express)=>{
     app.use("/category", categoryRouter);
     app.use("/course", courseRouter);
     app.use("/cart", cartRouter);
+    app.use("/coupon", couponRouter);
+
 
 
 
