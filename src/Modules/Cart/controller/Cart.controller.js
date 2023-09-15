@@ -5,20 +5,20 @@ import courseModel from "../../../../DB/model/Course.model.js"
 import cartModel from "../../../../DB/model/Cart.model.js"
 
 export const addCourseToCart =asyncHandler( async (req,res,next)=>{
-    const {courseId}=req.body
+    const {courseId,booked}=req.body
     const course = await courseModel.findById(courseId)
     if(!course){
         return next(new Error('course is not found',{cause:400}))
     }
-    // if(course.stock<qty){
-        //     return next(new Error('quantity is not found',{cause:400}))
-        // }
+    if(course.capacity<booked){
+            return next(new Error('course is full',{cause:400}))
+        }
         const cart = await cartModel.findOne({userId:req.user._id})
         if(!cart){
             const newCart = await cartModel.create({
                 userId:req.user._id,
                 courses:[{
-                    courseId
+                    courseId,booked
                     
                 }]
     })
@@ -28,12 +28,13 @@ let matchcourses = false
 for(let i=0;i<cart.courses.length;i++){
     
     if(cart.courses[i].courseId.toString() === courseId){
+        cart.courses[i].booked = booked
         matchcourses=true
         break
     }
 }
 if(matchcourses==false){
-    cart.courses.push({courseId})
+    cart.courses.push({courseId,booked})
 }
 await cart.save()
     return res.status(200).json({message:'success',cart})

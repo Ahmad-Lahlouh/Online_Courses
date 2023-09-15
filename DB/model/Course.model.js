@@ -26,9 +26,9 @@ const courseSchema = new Schema({
     mainImage:{
         type:Object,
     },
-    numberOfStudents:{
+    Capacity:{
         type:Number,
-        default:10
+        default:1
 
     },
     isDeleted:{

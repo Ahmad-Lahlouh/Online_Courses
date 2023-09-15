@@ -6,7 +6,7 @@ const cartSchema = new Schema({
     },
     courses:[{
         courseId:{type:Types.ObjectId,ref:'course',required:true},
-        qty:{type:Number,default:1,required:true}
+        booked:{type:Number,default:1,required:true}
     }]
 
 
