@@ -19,6 +19,10 @@ const router =Router();
 // router.put('/updatePassword',auth(endPoint.passUpdate),validation(validators.updatePassword),superAdminController.updatePassword);
 router.put('/:id',auth(endPoint.update),superAdminController.changeStatus)
 router.delete('/delete/:id',auth(endPoint.delete),superAdminController.deleted)
+router.get('/:adminid',auth(endPoint.get),superAdminController.getAdmin)
+router.get('/',auth(endPoint.get),superAdminController.getAllAdmins)
+
+
 
 
 export default router;

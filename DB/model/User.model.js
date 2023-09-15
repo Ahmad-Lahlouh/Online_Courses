@@ -53,7 +53,7 @@ const userSchema = new Schema ({
     changePasswordTime:{
         type:Date
     },
-    profilePublicUrl:String,
+    profilePublicUrl:[String],
     coverPic:[String],
 },
 {

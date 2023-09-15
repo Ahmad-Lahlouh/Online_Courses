@@ -9,9 +9,9 @@ import { endPoint } from './User.endpoint.js';
 ;
 const router =Router();
 
-// router.patch('/profilePic',auth,fileUpload(fileValidation.image).single('image'),
-// validation(validators.profilePic),
-// userController.profilePic);
+router.patch('/profilePic',auth(endPoint.profilepic),validation(validators.profilePic),fileUpload(fileValidation.image).single('image'),
+userController.profilePic);
+
 // router.patch('/coverPic',auth,fileUpload(fileValidation.image).
 // array('image',4),userController.coverPic);
 // router.get('/:id/profile',validation(validators.shareProfile),userController.shareProfile);
@@ -22,3 +22,5 @@ router.put('/updatePassword',auth(endPoint.userUpdate),validation(validators.upd
 
 
 export default router;
+
+// validation(validators.profilePic)

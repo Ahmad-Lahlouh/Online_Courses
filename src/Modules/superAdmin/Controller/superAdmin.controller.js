@@ -4,7 +4,6 @@ import { asyncHandler } from "../../../Services/errorHandling.js";
 import { compare, hash } from "../../../Services/hashAndCompare.js";
 
 
-
 // export const updatePassword=async  (req,res,next)=>{
 //     const {oldPassword,newPassword} = req.body;
 //     const user = await userModel.findById(req.user._id);
@@ -17,7 +16,6 @@ import { compare, hash } from "../../../Services/hashAndCompare.js";
 //     return res.json({message:"success"})
 
 // }
-
 
 export  const changeStatus = asyncHandler(async(req,res,next)=>{
     
@@ -44,6 +42,23 @@ export const deleted = asyncHandler(async(req,res,next)=>{
     }
     const deletedUser = await userModel.deleteOne({_id:req.params.id})
     return res.json({message:"success"})
+})
+
+export const getAdmin = asyncHandler(async(req,res,next)=>{
+    let{adminid} = req.params
+    const admin = await userModel.findById(adminid)
+    if(!admin||admin.role=="User"){
+        return next(new Error('Admin is not found',{cause:400}))
+    }
+    return res.json({message:'success',admin})
+})
+
+export const getAllAdmins = asyncHandler(async(req,res,next)=>{
+    const admins = await userModel.find({role:"Admin"})
+    if(!admins||admins.length==0){
+        return next(new Error('Admins are not found',{cause:400}))
+    }
+    return res.json({message:'success',admins})
 })
 
 
