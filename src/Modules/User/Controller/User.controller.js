@@ -33,6 +33,18 @@ export const coverPic =async (req,res,next)=>{
     return res.json({message:"success",user});
 }
 
+export const shareProfile = async(req,res,next)=>{
+
+    const user = await userModel.findById(req.params.id).select('userName email ');
+
+    if(!user){
+        return next(new Error("invalid profile id"));
+    }else{
+
+        return res.json({message:'success',user});
+    }
+    
+}
 export const updatePassword=async  (req,res,next)=>{
     const {oldPassword,newPassword} = req.body;
     const user = await userModel.findById(req.user._id);
@@ -46,18 +58,6 @@ export const updatePassword=async  (req,res,next)=>{
 
 }
 
-export const shareProfile = async(req,res,next)=>{
-
-    const user = await userModel.findById(req.params.id).select('userName email ');
-
-    if(!user){
-        return next(new Error("invalid profile id"));
-    }else{
-
-        return res.json({message:'success',user});
-    }
-    
-}
 
 export  const changeStatus = asyncHandler(async(req,res,next)=>{
     

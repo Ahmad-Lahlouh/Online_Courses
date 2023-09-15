@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import * as userController from './Controller/superAdmin.controller.js';
+import * as superAdminController from './Controller/superAdmin.controller.js';
 import { auth } from '../../Middleware/auth.middleware.js';
 import { asyncHandler } from '../../Services/errorHandling.js';
 import fileUpload, { fileValidation } from '../../Services/multerCloudinary.js';
@@ -16,10 +16,9 @@ const router =Router();
 // array('image',4),userController.coverPic);
 // router.get('/:id/profile',validation(validators.shareProfile),userController.shareProfile);
 
-router.put('/updatePassword',auth(endPoint.userUpdate),validation(validators.updatePassword),userController.updatePassword);
-router.put('/:id',auth(endPoint.update),userController.changeStatus)
-router.delete('/delete/:id',auth(endPoint.delete),userController.deleted)
-
+// router.put('/updatePassword',auth(endPoint.passUpdate),validation(validators.updatePassword),superAdminController.updatePassword);
+router.put('/:id',auth(endPoint.update),superAdminController.changeStatus)
+router.delete('/delete/:id',auth(endPoint.delete),superAdminController.deleted)
 
 
 export default router;

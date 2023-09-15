@@ -3,6 +3,7 @@ import connectDB from '../../DB/connection.js';
 import { globalErrorHandler } from '../Services/errorHandling.js';
 import AuthRouter from './Auth/Auth.router.js';
 import UserRouter from './User/User.router.js';
+import superAdminRouter from './superAdmin/superAdmin.router.js';
 import categoryRouter from './Category/Category.router.js'
 import courseRouter from './Course/Course.router.js'
 import cartRouter from './Cart/Cart.router.js'
@@ -21,12 +22,11 @@ const initApp=(app,express)=>{
     app.use('/upload',express.static(fullPath));
     app.use("/auth", AuthRouter);
     app.use('/user', UserRouter);
+    app.use('/superAdmin', superAdminRouter);
     app.use("/category", categoryRouter);
     app.use("/course", courseRouter);
     app.use("/cart", cartRouter);
     app.use("/coupon", couponRouter);
-
-
 
 
     app.use('/*', (req,res)=>{

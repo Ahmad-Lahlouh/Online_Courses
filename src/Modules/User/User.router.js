@@ -17,8 +17,7 @@ const router =Router();
 // router.get('/:id/profile',validation(validators.shareProfile),userController.shareProfile);
 
 router.put('/updatePassword',auth(endPoint.userUpdate),validation(validators.updatePassword),userController.updatePassword);
-router.put('/:id',auth(endPoint.update),userController.changeStatus)
-router.delete('/delete/:id',auth(endPoint.delete),userController.deleted)
+
 
 
 
