@@ -8,7 +8,7 @@ const couponSchema = new Schema({
     },
     amount:{type:Number,default:1},
     expireDate:{type:String,required:true},  //after prototype
-    usedBy:[{type:Types.ObjectId,ref:'User'}],
+    // usedBy:[{type:Types.ObjectId,ref:'User'}],
     createdBy:{type:Types.ObjectId,ref:'User',required:true},
     updatedBy:{type:Types.ObjectId,ref:'User',required:true},
 
