@@ -1,4 +1,4 @@
-import couponModel from "../../../../DB/model/Coupon.model.js"
+import couponModel from "../../../../DB/model/coupon.model.js"
 import cloudinary from "../../../Services/cloudinary.js"
 import slugify from "slugify"
 import { asyncHandler } from "../../../Services/errorHandling.js"
